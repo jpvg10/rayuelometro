@@ -1,5 +1,5 @@
-const capitulos = require("./capitulos.json");
-const orden = require("./orden.json");
+import capitulos from "./capitulos.js";
+import orden from "./orden.js";
 
 const EMPIEZA = 15;
 const TERMINA = 728;
@@ -16,25 +16,8 @@ const paginasLeidasAlFinalizarCapitulo = (capitulo) => {
   return paginasLeidas;
 };
 
-const porcentajeAlFinalizarCapitulo = (capitulo) => {
+export const porcentajeAlFinalizarCapitulo = (capitulo) => {
   const paginasLeidas = paginasLeidasAlFinalizarCapitulo(capitulo);
   const porcentaje = (paginasLeidas / TOTAL) * 100;
   return porcentaje;
 };
-
-// paginasLeidasAlFinalizarCapitulo(73);
-// paginasLeidasAlFinalizarCapitulo(1);
-// paginasLeidasAlFinalizarCapitulo(2);
-// paginasLeidasAlFinalizarCapitulo(116);
-// paginasLeidasAlFinalizarCapitulo(77);
-// paginasLeidasAlFinalizarCapitulo(131);
-// paginasLeidasAlFinalizarCapitulo(58);
-
-// for (c of orden) {
-//   const p = porcentajeAlFinalizarCapitulo(c);
-//   if (Math.floor(p) % 10 == 0) {
-//     console.log(c, ":", p);
-//   }
-// }
-
-console.log(porcentajeAlFinalizarCapitulo(14));

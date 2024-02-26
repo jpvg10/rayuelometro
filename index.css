@@ -1,0 +1,40 @@
+body {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.progreso {
+  margin: 20px auto 0px auto;
+  padding: 2px;
+  width: 100%;
+  max-width: 350px;
+  border: 1px solid black;
+  height: 20px;
+}
+
+.progreso .progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #FFA62F;
+}
+
+#porcentaje {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+button {
+  width: 50px;
+  padding: 10px 0;
+}
+
+button.leido {
+  text-decoration: line-through;
+  filter: brightness(115%);
+}
+
+button.actual {
+  font-weight: bold;
+  border: 2px solid #FFA62F;
+}

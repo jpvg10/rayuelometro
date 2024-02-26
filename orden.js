@@ -1,4 +1,4 @@
-[
+export default [
   73,
   1,
   2,
