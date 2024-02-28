@@ -6,14 +6,19 @@ window.addEventListener("load", () => {
   const progressBar = document.getElementsByClassName("progress-bar")[0];
   const pPorcentaje = document.getElementById("porcentaje");
 
-  const mostrarProgeso = (capitulo) => {
-    const porcentaje = capitulo ? porcentajeAlFinalizarCapitulo(capitulo) : 0;
-    pPorcentaje.innerText = porcentaje.toFixed(1) + "% completado";
-    progressBar.style.width = porcentaje + "%";
+  const mostrarProgreso = (capitulo, esUltimo = false) => {
+    if (esUltimo) {
+      pPorcentaje.innerText = "Finalizado!";
+      progressBar.style.width = "100%";
+    } else {
+      const porcentaje = capitulo ? porcentajeAlFinalizarCapitulo(capitulo) : 0;
+      pPorcentaje.innerText = porcentaje.toFixed(1) + "% completado";
+      progressBar.style.width = porcentaje + "%";
+    }
 
     const capituloIndex = orden.indexOf(capitulo);
-    for (let i = 0; i < orden.length; i++) {
-      if (i < capituloIndex) {
+    for (let i = 0; i < botones.length; i++) {
+      if (esUltimo || i < capituloIndex) {
         botones[i].classList.remove("actual");
         botones[i].classList.add("leido");
       } else if (i == capituloIndex) {
@@ -26,8 +31,9 @@ window.addEventListener("load", () => {
   };
 
   const onClick = (capitulo) => () => {
-    mostrarProgeso(capitulo);
     localStorage.setItem("capitulo", capitulo);
+    localStorage.setItem("ultimo", false);
+    mostrarProgreso(capitulo);
   };
 
   const botones = orden.map((capitulo) => {
@@ -37,8 +43,17 @@ window.addEventListener("load", () => {
     return b;
   });
 
+  const ultimoBoton = document.createElement("button");
+  ultimoBoton.innerText = "131";
+  ultimoBoton.addEventListener("click", () => {
+    localStorage.setItem("ultimo", true);
+    mostrarProgreso(0, true);
+  });
+  botones.push(ultimoBoton);
+
   botones.forEach((b) => tablero.append(b));
 
   const capituloActual = Number(localStorage.getItem("capitulo"));
-  mostrarProgeso(capituloActual);
+  const esUltimo = Boolean(localStorage.getItem("ultimo"));
+  mostrarProgreso(capituloActual, esUltimo);
 });
