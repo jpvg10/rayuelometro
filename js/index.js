@@ -54,6 +54,6 @@ window.addEventListener("load", () => {
   botones.forEach((b) => tablero.append(b));
 
   const capituloActual = Number(localStorage.getItem("capitulo"));
-  const esUltimo = Boolean(localStorage.getItem("ultimo"));
+  const esUltimo = localStorage.getItem("ultimo") === "true";
   mostrarProgreso(capituloActual, esUltimo);
 });
