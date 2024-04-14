@@ -44,6 +44,7 @@ button.leido {
 }
 
 button.actual {
+  text-decoration: line-through;
   font-weight: bold;
   border: 2px solid #FFA62F;
 }
